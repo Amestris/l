@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_url, alert:  exception.message
-  end
+  
   rescue_from ActiveRecord::RecordNotFound do
     render action: "/shared/404"
   end

@@ -10,10 +10,6 @@ module L
     rescue_from ActiveRecord::RecordNotFound do
       render :action => "lazy_programmer/mobile/error404"
     end
-    
-    rescue_from CanCan::AccessDenied do
-      render :action => "lazy_programmer/mobile/error401"
-    end
 
     # Akcja główna kontrolerza mobilnego.
     #

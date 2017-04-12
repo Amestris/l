@@ -15,7 +15,6 @@ module L
     # * <b>Lista dołączanych gemów</b>:
     #
     #   - +devise+
-    #   - +cancan+
     #   - +rolify+
     #   - +globalize3+ - z repozytorium git, bo najnowsza wersja z rubygem.com
     #     nie działa z Rails 3.2
@@ -95,7 +94,6 @@ module L
 
           gem 'devise', "~> 2.0.0"
           
-          gem 'cancan'
           gem 'rolify'
 
           gem 'globalize3', '~> 0.3.0'
@@ -134,10 +132,7 @@ module L
         inject_into_class user_model_path, user_class_name, user_class_setup
       end
 
-      def generate_cancan_ability # :nodoc:
-        generate 'cancan:ability'
-      end
-
+      
       def generate_rolify_role # :nodoc:
         generate 'rolify:role -q'
       end

@@ -7,13 +7,15 @@ module L
     layout "l/layouts/admin"
 
     protect_from_forgery
-
+    access_control do
+      allow :admin
+    end
     # Akcja pokazująca formularz edycji aktualnie zalogowanego użytkownika.
     #
     # *GET* /admin
     #
     def show
-      authorize! :manage, :self
+      
 
       respond_to do |format|
         format.html
@@ -25,7 +27,7 @@ module L
     # *POST* /admin/update_user
     #
     def update_user
-      authorize! :manage, :self
+      
 
       respond_to do |format|
 

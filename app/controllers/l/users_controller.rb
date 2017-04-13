@@ -1,5 +1,8 @@
 # coding: utf-8
 module L
+  access_control do
+    allow :admin
+  end
   # Kontroler zarządzający uzytkownikami.
   #
   # Pozwal administratorowi na tworzenie, edycję i usuwanie użytkowników. 
@@ -11,7 +14,6 @@ module L
     #
     # *GET* /users/
     def index
-      authorize! :menage, :all
       @users = User.all.paginate :page => params[:page], :per_page => params[:per_page]||10
     end
 
@@ -20,7 +22,6 @@ module L
     # *GET* /users/1
     #
     def show
-      authorize! :menage, :all
       @user = User.find(params[:id])
     end
 
@@ -29,7 +30,6 @@ module L
     # *GET* /users/new
     #
     def new
-      authorize! :menage, :all
       @user = User.new
     end
 
@@ -38,7 +38,6 @@ module L
     # *GET* /users/1/edit
     #
     def edit
-      authorize! :menage, :all
       @user = User.find(params[:id])
     end
 
@@ -47,7 +46,6 @@ module L
     # *POST* /users/1
     #
     def create
-      authorize! :menage, :all
       @user = User.new(params[:user])
       if @user.save
         redirect_to users_path, notice: I18n.t('create.success')
@@ -61,7 +59,6 @@ module L
     # *PUT* /users/1
     #
     def update
-      authorize! :menage, :all
       @user = User.find(params[:id])
       if @user.update_attributes(params[:user])
         redirect_to users_path, notice: I18n.t('update.success')
@@ -74,7 +71,6 @@ module L
     #
     # *DELETE* /users/1
     def destroy
-      authorize! :menage, :all
       @user = User.find(params[:id])
       @user.destroy
       respond_to do |format|
